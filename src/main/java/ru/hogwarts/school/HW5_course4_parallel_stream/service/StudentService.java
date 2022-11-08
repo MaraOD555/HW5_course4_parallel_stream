@@ -13,7 +13,7 @@ import java.util.stream.Stream;
 
 @Service
 public class StudentService {
-    Logger logger = LoggerFactory.getLogger(StudentService.class); // конструкция добавлена, чтобы добавить логгер в класс
+    private final Logger logger = LoggerFactory.getLogger(StudentService.class); // конструкция добавлена, чтобы добавить логгер в класс
     private final StudentRepository studentRepository;
     public StudentService(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;

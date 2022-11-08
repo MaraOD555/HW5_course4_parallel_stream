@@ -1,7 +1,6 @@
 package ru.hogwarts.school.HW5_course4_parallel_stream.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import ru.hogwarts.school.HW5_course4_parallel_stream.model.Student;
 
@@ -11,6 +10,8 @@ public interface StudentRepository extends JpaRepository<Student, Long> { //Spri
     List<Student> findByAge(int age);
 
     List<Student> findByAgeBetween(int from, int to);
+
+
 
  /*   @Query(value = "SELECT count(id) FROM student", nativeQuery = true)
     int totalCountOfStudents();
