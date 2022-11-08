@@ -3,10 +3,12 @@ package ru.hogwarts.school.HW5_course4_parallel_stream.service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import ru.hogwarts.school.HW5_course4_parallel_stream.exception.FacultyNotFoundException;
 import ru.hogwarts.school.HW5_course4_parallel_stream.model.Faculty;
 import ru.hogwarts.school.HW5_course4_parallel_stream.repository.FacultyRepository;
 
 import java.util.Collection;
+import java.util.Comparator;
 
 @Service
 public class FacultyService {
@@ -45,4 +47,11 @@ public class FacultyService {
     public Collection<Faculty> getAllFaculty() { return facultyRepository.findAll();
     }
 
+    public String findTheLongestFacultyName() {
+        return facultyRepository.findAll().stream()
+                .map(Faculty::getName)
+                .max(Comparator.comparingInt(String::length))// вернет максимальное значение согласно правилу
+                // в компараторе (по длине)
+                .orElseThrow(FacultyNotFoundException::new);
+    }
 }

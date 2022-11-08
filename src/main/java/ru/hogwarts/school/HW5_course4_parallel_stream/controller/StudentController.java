@@ -8,6 +8,7 @@ import ru.hogwarts.school.HW5_course4_parallel_stream.service.StudentService;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.stream.Stream;
 
 @RestController
 @RequestMapping("/student")
@@ -54,10 +55,17 @@ public class StudentController {
                                                                  @RequestParam int to){
         return ResponseEntity.ok(studentService.findByAgeBetween(from, to));
     }
-  @GetMapping
-    public ResponseEntity<Collection<Student>> getAll(){
-        Collection<Student> students = studentService.getAllStudents();
-        return ResponseEntity.ok(students);
+    @GetMapping("/findAllStudentsStartedWithBigA")
+    public Stream<String> findAllStudentsStartedWithBigA(){
+        return studentService.findAllStudentsStartedWithBigA();
+    }
+    @GetMapping("/averageAge")
+    public double findAverageAge(){
+        return studentService.findStudentsAverageAge();
+    }
+    @GetMapping("/parallelStream")
+    public void parallelStreamImplementation(){
+        studentService.parallelStreamImplementation();
     }
     /*  @GetMapping("/totalCount")
     public int totalCountStudents(){
