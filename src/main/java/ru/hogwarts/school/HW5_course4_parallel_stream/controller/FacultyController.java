@@ -59,5 +59,9 @@ public class FacultyController {
         }
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
     }
+    @GetMapping("/findTheLongestFacultyName")
+    public String findTheLongestFacultyName(){
+        return facultyService.findTheLongestFacultyName();
+    }
 
 }
